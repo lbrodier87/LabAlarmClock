@@ -17,8 +17,8 @@ The executable jar is in the folder 'dist'.
 
 ### Alarm ###
 When alarm mode is activated, the orange clock hands indicate when the alarm will sound. 
-Move minute hand with mouse wheel, and use Shift + mouse wheel to move hours hand. 
-The alarm prouce a beeping sound and display a flashing message box. 
+Move minute hand with mouse wheel, and use Shift + mouse wheel to move hour hand. 
+The alarm prouces a beeping sound and displays a flashing message box. 
 Simply click on the message box to stop the alarm. 
 Make sure to have sounds activated on your operating system to hear the alarm. 
 * A   → activate/deactivate alarm mode
