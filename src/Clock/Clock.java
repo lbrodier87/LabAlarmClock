@@ -60,7 +60,10 @@ public class Clock{
             }
             if(e.getKeyCode() == KeyEvent.VK_B){                
                 background = !background;
-            }            
+            } 
+            if(e.getKeyCode() == KeyEvent.VK_M){                
+                countdown = !countdown;
+            }  
         }
     };
     java.awt.event.MouseWheelListener MWL = new java.awt.event.MouseWheelListener() {
@@ -108,6 +111,9 @@ public class Clock{
     
     HelpDialog help = new HelpDialog(new javax.swing.JFrame(), false);
     boolean displayHour = false;
+    
+    boolean countdown = false; //new 
+    int h_r, m_r, s_r;
     
     Clock(boolean loadImg){
         if(loadImg){
@@ -346,9 +352,16 @@ public class Clock{
             g.setFont(new java.awt.Font("f2", java.awt.Font.PLAIN, 12));
             g.drawString(df.format(hour) + "h "+ df.format(m) + "m "+ df.format(s) + "s", w/2 - g.getFontMetrics().stringWidth(df.format(hour) + "h "+ df.format(m) + "m "+ df.format(s) + "s")/2, h/2 - h/12);
         }
+        
+        if(displayHour && countdown && !chronoON){ //new
+            g.setColor(alarmColor.darker());
+            calcRemeiningTime();
+            g.setFont(new java.awt.Font("f2", java.awt.Font.PLAIN, 12));
+            g.drawString(df.format(h_r) + "h "+ df.format(m_r) + "m "+ df.format(s_r) + "s", w/2 - g.getFontMetrics().stringWidth(df.format(h_r) + "h "+ df.format(m_r) + "m "+ df.format(s_r) + "s")/2, h/2 + h/12+10);
+        }
 
         if(displayHour && chronoON){
-            g.setColor(chronoColor);
+            g.setColor(chronoColor.darker());
             g.setFont(new java.awt.Font("f2", java.awt.Font.PLAIN, 12));
             g.drawString(chronoH + "h "+ df.format(chronoM) + "m "+ df.format(chronoS) + "s " + df.format(chronoMS/10) + "ms", w/2 - g.getFontMetrics().stringWidth(chronoH + "h "+ df.format(chronoM) + "m "+ df.format(chronoS) + "s " + df.format(chronoMS/10) + "ms")/2, h/2 + h/12+10);
         }
@@ -363,5 +376,20 @@ public class Clock{
     }    
     public void resetChrono(){
         chrono.resetChronometer();
+    }
+    
+    public void calcRemeiningTime(){
+        int total_sec_diff = hour*60*60 + m*60 + s - alarmH*60*60 - alarmM*60;
+        s_r = (int)((double)total_sec_diff % 60);
+        double mins_diff = (double)total_sec_diff/60;
+        if(mins_diff > 0){
+            mins_diff = Math.floor(mins_diff);
+        }else{
+            mins_diff = Math.ceil(mins_diff);
+        }
+        m_r = (int)(mins_diff % 60);
+        h_r = (int)mins_diff / 60;
+        
+        
     }
 }
