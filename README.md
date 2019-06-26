@@ -1,4 +1,4 @@
-# LabAlarmClock #
+﻿# LabAlarmClock #
 
 This is a clock programmed in java. The NetBeans project is included. 
 The executable jar is in the folder 'dist'. 
@@ -23,6 +23,7 @@ Simply click on the message box to stop the alarm.
 Make sure to have sounds activated on your operating system to hear the alarm. 
 * A   → activate/deactivate alarm mode
 * S   → show alarm control panel. Once set, you can close the panel. 
+* M   → show time elapsed from set time (if display (D) is active)
 
 ### Stop watch ###
 When stopwatch function is activated, green clock hands indicate elapsed time. 
